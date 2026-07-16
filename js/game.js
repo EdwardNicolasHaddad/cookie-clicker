@@ -8,9 +8,11 @@ crumbs = Number(crumbs);
 crumbDisplay.textContent = "Crumbs: " + crumbs;
 
 cookie.addEventListener("click", function() {
+
     crumbs++;
 
     crumbDisplay.textContent = "Crumbs: " + crumbs;
 
     localStorage.setItem("crumbs", crumbs);
+
 });
