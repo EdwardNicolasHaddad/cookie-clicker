@@ -1,6 +1,6 @@
 let crumbs = localStorage.getItem("crumbs") || 0;
 
-const cookie = document.querySelector("button");
+const cookie = document.getElementById("cookie");
 const crumbDisplay = document.querySelector("h2");
 
 crumbs = Number(crumbs);
