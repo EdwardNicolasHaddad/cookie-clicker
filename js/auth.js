@@ -29,7 +29,7 @@ if (registerButton) {
 
         } else {
 
-            alert("Account erstellt!");
+            alert("Account created!");
             window.location.href = "login.html";
 
         }
