@@ -1,17 +1,11 @@
 let player = localStorage.getItem("player");
 
-let crumbs;
+let crumbs = 0;
 
 if (player) {
 
-    // Eingeloggter Account
     let account = JSON.parse(player);
     crumbs = account.crumbs || 0;
-
-} else {
-
-    // Gast
-    crumbs = 0;
 
 }
 
@@ -20,12 +14,10 @@ const cookie = document.getElementById("cookie");
 const crumbDisplay = document.querySelector("h2");
 
 
-crumbs = Number(crumbs);
-
 crumbDisplay.textContent = "Crumbs: " + crumbs;
 
 
-cookie.addEventListener("click", function() {
+cookie.addEventListener("click", async function() {
 
     crumbs++;
 
@@ -35,12 +27,21 @@ cookie.addEventListener("click", function() {
     if (player) {
 
         let account = JSON.parse(player);
+
         account.crumbs = crumbs;
 
         localStorage.setItem(
             "player",
             JSON.stringify(account)
         );
+
+
+        await supabaseClient
+            .from("profiles")
+            .update({
+                crumbs: crumbs
+            })
+            .eq("id", account.id);
 
     }
 
