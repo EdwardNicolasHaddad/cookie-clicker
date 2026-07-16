@@ -20,7 +20,8 @@ if (registerButton) {
                     crumbs: 0,
                     world: 1
                 }
-            ]);
+            ])
+            .select();
 
 
         if (error) {
@@ -29,8 +30,11 @@ if (registerButton) {
 
         } else {
 
+            localStorage.setItem("player", JSON.stringify(data[0]));
+
             alert("Account created!");
-            window.location.href = "login.html";
+
+            window.location.href = "game.html";
 
         }
 
