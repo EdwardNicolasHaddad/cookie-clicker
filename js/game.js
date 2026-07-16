@@ -17,9 +17,11 @@ const crumbDisplay = document.querySelector("h2");
 crumbDisplay.textContent = "Crumbs: " + crumbs;
 
 
-cookie.addEventListener("click", async function() {
+cookie.addEventListener("click", async function(event) {
 
     crumbs++;
+
+    showFloatingText(event);
 
     crumbDisplay.textContent = "Crumbs: " + crumbs;
 
@@ -46,3 +48,27 @@ cookie.addEventListener("click", async function() {
     }
 
 });
+
+function showFloatingText(event) {
+
+    const text = document.createElement("div");
+
+    text.className = "floating";
+
+    text.innerText = "+1";
+
+
+    text.style.left = event.clientX + "px";
+    text.style.top = event.clientY + "px";
+
+
+    document.body.appendChild(text);
+
+
+    setTimeout(() => {
+
+        text.remove();
+
+    }, 1000);
+
+}
