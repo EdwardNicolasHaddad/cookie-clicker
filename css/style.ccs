@@ -1,1 +1,169 @@
+/* Allgemeines Design für alle Seiten */
 
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-family: "Trebuchet MS", Arial, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #fff3c4,
+            #d99a4a
+        );
+
+    color: #4a2600;
+}
+
+
+/* Überschriften */
+
+h1 {
+
+    font-size: 42px;
+
+    margin-bottom: 25px;
+
+    text-align: center;
+
+}
+
+
+h2 {
+
+    font-size: 28px;
+
+    text-align: center;
+
+}
+
+
+/* Box für Login/Register */
+
+.auth-box {
+
+    width: 360px;
+
+    padding: 35px;
+
+    background: rgba(255,255,255,0.9);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.25);
+
+    text-align: center;
+
+}
+
+
+/* Eingabefelder */
+
+input {
+
+    width: 100%;
+
+    padding: 15px;
+
+    margin: 10px 0;
+
+    border-radius: 15px;
+
+    border: 2px solid #d99a4a;
+
+    font-size: 18px;
+
+    outline: none;
+
+}
+
+
+input:focus {
+
+    border-color: #8b4a00;
+
+}
+
+
+/* Buttons */
+
+button {
+
+    width: 100%;
+
+    padding: 15px;
+
+    margin-top: 15px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #d98b32,
+            #a85d12
+        );
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+button:hover {
+
+    transform: scale(1.05);
+
+}
+
+
+button:active {
+
+    transform: scale(0.95);
+
+}
+
+
+/* Links */
+
+a {
+
+    color: #8b4a00;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+}
+
+
+a:hover {
+
+    text-decoration: underline;
+
+}
