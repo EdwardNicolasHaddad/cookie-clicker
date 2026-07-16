@@ -5,7 +5,7 @@ const crumbDisplay = document.querySelector("h2");
 
 crumbs = Number(crumbs);
 
-crumbDisplay.textContent = Crumbs: " + crumbs;
+crumbDisplay.textContent = "Crumbs: " + crumbs;
 
 cookie.addEventListener("click", function() {
     crumbs++;
