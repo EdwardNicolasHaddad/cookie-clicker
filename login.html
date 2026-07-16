@@ -3,7 +3,6 @@
 
 <head>
     <title>Cookie Clicker - Login</title>
-    <link rel="stylesheet" href="css/auth.css">
 </head>
 
 <body>
@@ -12,13 +11,19 @@
 
     <h2>Login</h2>
 
-    <input type="email" placeholder="E-Mail" id="email">
+    <input type="text" id="username" placeholder="Username">
 
-    <input type="password" placeholder="Password" id="password">
+    <input type="password" id="password" placeholder="Password">
 
     <button id="login">
         Login
     </button>
+
+    <p>
+        No account?
+        <a href="register.html">Create Account</a>
+    </p>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase.js"></script>
