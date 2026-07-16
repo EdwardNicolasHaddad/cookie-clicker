@@ -7,31 +7,45 @@
 
 <body>
 
+<div class="auth-box">
+
     <h1>🍪 Cookie Clicker</h1>
 
-    <h2>Welcome!</h2>
-
-    <button onclick="window.location.href='login.html'">
-        Login
-    </button>
-
-    <button onclick="window.location.href='register.html'">
-        Create Account
-    </button>
+    <h2>
+        Build your cookie empire!
+    </h2>
 
     <button onclick="playGuest()">
         Play as Guest
     </button>
 
-    <script>
-        function playGuest() {
 
-            localStorage.removeItem("player");
+    <button onclick="window.location.href='login.html'">
+        Login
+    </button>
 
-            window.location.href = "game.html";
 
-        }
-    </script>
+    <button onclick="window.location.href='register.html'">
+        Create Account
+    </button>
+
+
+</div>
+
+
+<script>
+
+function playGuest() {
+
+    localStorage.removeItem("player");
+
+    window.location.href = "game.html";
+
+}
+
+</script>
+
+
 </body>
 
 </html>
