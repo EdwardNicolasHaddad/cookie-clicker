@@ -19,10 +19,19 @@
         Create Account
     </button>
 
-    <button onclick="window.location.href='game.html'">
-        Play as guest
+    <button onclick="playGuest()">
+        Play as Guest
     </button>
 
+    <script>
+        function playGuest() {
+
+            localStorage.removeItem("player");
+
+            window.location.href = "game.html";
+
+        }
+    </script>
 </body>
 
 </html>
