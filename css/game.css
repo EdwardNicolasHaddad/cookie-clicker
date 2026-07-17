@@ -155,7 +155,7 @@ body {
 
 .click-animation {
 
-    transform: scale(0.9);
+    animation: cookieClick 0.1s;
 
 }
 
@@ -178,6 +178,30 @@ body {
     100% {
 
         transform: translateY(0);
+
+    }
+
+}
+
+@keyframes cookieClick {
+
+    0% {
+
+        transform: scale(1);
+
+    }
+
+
+    50% {
+
+        transform: scale(0.9);
+
+    }
+
+
+    100% {
+
+        transform: scale(1);
 
     }
 
