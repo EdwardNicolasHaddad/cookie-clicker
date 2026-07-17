@@ -69,9 +69,10 @@ function showFloatingText(event) {
     text.innerText = "+1";
 
 
-    text.style.left = event.clientX + "px";
-    text.style.top = event.clientY + "px";
+    const offsetX = Math.random() * 50 - 25;
 
+    text.style.left = (event.clientX + offsetX) + "px";
+    text.style.top = event.clientY + "px";
 
     document.body.appendChild(text);
 
