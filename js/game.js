@@ -121,7 +121,8 @@ function createCrumbs(event) {
         const crumb = document.createElement("div");
 
         crumb.className = "crumb-particle";
-
+        crumb.style.rotate =
+            (Math.random() * 90 - 45) + "deg";
 
         let x;
         let y;
