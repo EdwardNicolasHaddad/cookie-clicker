@@ -56,26 +56,9 @@ h2 {
     transition: transform 0.1s;
 }
 
-.cookie-click {
-
-    animation:
-        cookieClick 0.1s,
-        cookieFloat 3s ease-in-out infinite;
-
-}
-
 #cookie:hover {
 
     transform: scale(1.05);
-
-}
-
-
-#cookie:active {
-
-    animation: none;
-
-    transform: scale(0.9);
 
 }
 
@@ -210,22 +193,6 @@ body {
 
         transform: scale(1);
 
-    }
-
-}
-
-@keyframes cookieClick {
-
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(0.9);
-    }
-
-    100% {
-        transform: scale(1);
     }
 
 }
