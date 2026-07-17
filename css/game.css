@@ -66,6 +66,8 @@ h2 {
 
 #cookie:active {
 
+    animation: none;
+
     transform: scale(0.9);
 
 }
