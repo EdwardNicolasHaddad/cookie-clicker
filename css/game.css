@@ -148,3 +148,9 @@ body {
     pointer-events: none;
     user-select: none;
 }
+
+.click-animation {
+
+    transform: scale(0.9);
+
+}
