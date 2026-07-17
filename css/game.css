@@ -201,14 +201,16 @@ body {
 
     position: fixed;
 
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 7px;
 
     background: #8b5a2b;
 
-    border-radius: 50%;
+    border-radius: 2px;
 
     pointer-events: none;
+
+    transform: rotate(45deg);
 
     animation: crumbFly 0.6s forwards;
 
