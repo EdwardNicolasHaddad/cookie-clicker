@@ -20,7 +20,15 @@ async function cookieClick(event) {
 
     crumbs++;
 
-    showFloatingText(event);
+    if (event && event.type === "click") {
+
+        showFloatingText(event);
+
+    } else {
+
+        showFloatingTextFromCenter();
+
+    }
 
     crumbDisplay.textContent = "Crumbs: " + crumbs;
 
@@ -69,6 +77,29 @@ function showFloatingText(event) {
 
 
     setTimeout(() => {
+
+        text.remove();
+
+    }, 1000);
+
+}
+
+function showFloatingTextFromCenter() {
+
+    const text = document.createElement("div");
+
+    text.className = "floating";
+
+    text.innerText = "+1";
+
+    const rect = cookie.getBoundingClientRect();
+
+    text.style.left = (rect.left + rect.width / 2) + "px";
+    text.style.top = (rect.top + rect.height / 2) + "px";
+
+    document.body.appendChild(text);
+
+    setTimeout(function() {
 
         text.remove();
 
