@@ -78,30 +78,58 @@ h2 {
 
     position: absolute;
 
-    font-size: 30px;
+    font-size: 32px;
 
     font-weight: bold;
 
-    color: #8b4a00;
+    color: #8b4a2b;
 
-    animation: floatUp 1s forwards;
+    text-shadow:
+        2px 2px 5px rgba(0,0,0,0.25);
+
+    pointer-events: none;
+
+    user-select: none;
+
+    animation: floatUp 0.9s ease-out forwards;
 
 }
 
 
 @keyframes floatUp {
 
-    from {
+    0% {
 
         opacity: 1;
-        transform: translate(-50%, -50%) translateY(0);
+
+        transform:
+            translate(-50%, -50%)
+            translateY(0)
+            scale(1);
 
     }
 
-    to {
+
+    40% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(-30px)
+            scale(1.25);
+
+    }
+
+
+    100% {
 
         opacity: 0;
-        transform: translate(-50%, -50%) translateY(-80px);
+
+        transform:
+            translate(-50%, -50%)
+            translateY(-100px)
+            scale(0.9);
 
     }
 
