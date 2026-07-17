@@ -41,73 +41,32 @@ h2 {
 
 #cookie {
 
-    width: 260px;
-    height: 260px;
+    width: 300px;
+    height: 300px;
 
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #f7c77a,
-            #c8782d
-        );
-
-    position: relative;
+    object-fit: contain;
 
     cursor: pointer;
 
-    box-shadow:
-        0 15px 30px rgba(0,0,0,0.3);
+    user-select: none;
+    -webkit-user-select: none;
 
     transition: transform 0.1s;
-
 }
 
 
-/* kleine Schokostücke */
+#cookie:hover {
 
-#cookie::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 35px;
-    height: 35px;
-
-    background: #5a2a0c;
-
-    border-radius: 50%;
-
-    top: 50px;
-    left: 70px;
-
-    box-shadow:
-
-        80px 30px #5a2a0c,
-        20px 100px #5a2a0c,
-        120px 120px #5a2a0c,
-        150px 70px #5a2a0c;
-
-}
-
-
-/* Klick Animation */
-
-#cookie:active {
-
-    transform: scale(0.9) rotate(3deg);
+    transform: scale(1.05);
 
 }
 
 
 #cookie:active {
 
-    transform: scale(0.9);
+    transform: scale(0.9) rotate(5deg);
 
 }
-
 
 .floating {
 
