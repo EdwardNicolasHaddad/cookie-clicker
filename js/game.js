@@ -19,7 +19,7 @@ crumbDisplay.textContent = "Crumbs: " + crumbs;
 async function cookieClick(event) {
 
     crumbs++;
-
+    createCrumbs();
     if (event && event.type === "click") {
 
         showFloatingText(event);
@@ -111,6 +111,52 @@ function showFloatingTextFromCenter() {
         text.remove();
 
     }, 1000);
+
+}
+
+function createCrumbs() {
+
+    for (let i = 0; i < 3; i++) {
+
+        const crumb = document.createElement("div");
+
+        crumb.className = "crumb-particle";
+
+        const rect = cookie.getBoundingClientRect();
+
+
+        crumb.style.left =
+            (rect.left + rect.width / 2) + "px";
+
+        crumb.style.top =
+            (rect.top + rect.height / 2) + "px";
+
+
+        document.body.appendChild(crumb);
+
+
+        const randomX = Math.random() * 80 - 40;
+        const randomY = Math.random() * 80 - 40;
+
+
+        crumb.style.setProperty(
+            "--x",
+            randomX + "px"
+        );
+
+        crumb.style.setProperty(
+            "--y",
+            randomY + "px"
+        );
+
+
+        setTimeout(() => {
+
+            crumb.remove();
+
+        }, 600);
+
+    }
 
 }
 
