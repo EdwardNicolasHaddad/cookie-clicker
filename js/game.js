@@ -16,15 +16,13 @@ const crumbDisplay = document.querySelector("h2");
 
 crumbDisplay.textContent = "Crumbs: " + crumbs;
 
-
-cookie.addEventListener("click", async function(event) {
+async function cookieClick(event) {
 
     crumbs++;
 
     showFloatingText(event);
 
     crumbDisplay.textContent = "Crumbs: " + crumbs;
-
 
     if (player) {
 
@@ -37,7 +35,6 @@ cookie.addEventListener("click", async function(event) {
             JSON.stringify(account)
         );
 
-
         await supabaseClient
             .from("profiles")
             .update({
@@ -46,6 +43,12 @@ cookie.addEventListener("click", async function(event) {
             .eq("id", account.id);
 
     }
+
+}
+
+cookie.addEventListener("click", function(event) {
+
+    cookieClick(event);
 
 });
 
@@ -72,3 +75,15 @@ function showFloatingText(event) {
     }, 1000);
 
 }
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.code === "Space") {
+
+        event.preventDefault();
+
+        cookieClick(event);
+
+    }
+
+});
