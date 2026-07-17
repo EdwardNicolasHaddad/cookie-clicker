@@ -108,3 +108,23 @@ h2 {
     }
 
 }
+
+body {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#cookie {
+    -webkit-user-select: none;
+    user-select: none;
+
+    -webkit-user-drag: none;
+    user-drag: none;
+
+    touch-action: manipulation;
+}
+
+.floating {
+    pointer-events: none;
+    user-select: none;
+}
