@@ -120,13 +120,13 @@ document.addEventListener("keydown", function(event) {
 
         event.preventDefault();
 
-        cookieClick(event);
+        cookieClick();
 
-        cookie.classList.add("click-animation");
+        cookie.classList.add("cookie-click");
 
         setTimeout(() => {
 
-            cookie.classList.remove("click-animation");
+            cookie.classList.remove("cookie-click");
 
         }, 100);
 
