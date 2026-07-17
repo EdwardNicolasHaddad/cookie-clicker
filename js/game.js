@@ -122,6 +122,14 @@ document.addEventListener("keydown", function(event) {
 
         cookieClick(event);
 
+        cookie.classList.add("click-animation");
+
+        setTimeout(() => {
+
+            cookie.classList.remove("click-animation");
+
+        }, 100);
+
     }
 
 });
