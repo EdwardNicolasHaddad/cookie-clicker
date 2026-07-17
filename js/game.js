@@ -97,6 +97,8 @@ function showFloatingTextFromCenter() {
     text.style.left = (rect.left + rect.width / 2) + "px";
     text.style.top = (rect.top + rect.height / 2) + "px";
 
+    text.style.transform = "translate(-50%, -50%)";
+
     document.body.appendChild(text);
 
     setTimeout(function() {
@@ -109,12 +111,14 @@ function showFloatingTextFromCenter() {
 
 document.addEventListener("keydown", function(event) {
 
-    if (event.code === "Space") {
+    if (event.code === "Space" && !event.repeat) {
 
         event.preventDefault();
 
         cookieClick(event);
 
     }
+
+});
 
 });
