@@ -51,6 +51,8 @@ h2 {
     user-select: none;
     -webkit-user-select: none;
 
+    animation: cookieFloat 3s ease-in-out infinite;
+
     transition: transform 0.1s;
 }
 
@@ -152,5 +154,29 @@ body {
 .click-animation {
 
     transform: scale(0.9);
+
+}
+
+@keyframes cookieFloat {
+
+    0% {
+
+        transform: translateY(0);
+
+    }
+
+
+    50% {
+
+        transform: translateY(-10px);
+
+    }
+
+
+    100% {
+
+        transform: translateY(0);
+
+    }
 
 }
