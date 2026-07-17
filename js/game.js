@@ -95,7 +95,11 @@ function showFloatingTextFromCenter() {
 
     const rect = cookie.getBoundingClientRect();
 
-    text.style.left = (rect.left + rect.width / 2) + "px";
+    const offsetX = Math.random() * 50 - 25;
+
+    text.style.left =
+    (rect.left + rect.width / 2 + offsetX) + "px";
+    
     text.style.top = (rect.top + rect.height / 2) + "px";
 
     text.style.transform = "translate(-50%, -50%)";
