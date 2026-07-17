@@ -122,14 +122,6 @@ document.addEventListener("keydown", function(event) {
 
         cookieClick();
 
-        cookie.classList.add("cookie-click");
-
-        setTimeout(() => {
-
-            cookie.classList.remove("cookie-click");
-
-        }, 100);
-
     }
 
 });
