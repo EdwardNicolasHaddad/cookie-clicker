@@ -19,7 +19,7 @@ crumbDisplay.textContent = "Crumbs: " + crumbs;
 async function cookieClick(event) {
 
     crumbs++;
-    createCrumbs();
+    createCrumbs(event);
     if (event && event.type === "click") {
 
         showFloatingText(event);
@@ -114,7 +114,7 @@ function showFloatingTextFromCenter() {
 
 }
 
-function createCrumbs() {
+function createCrumbs(event) {
 
     for (let i = 0; i < 3; i++) {
 
@@ -122,17 +122,32 @@ function createCrumbs() {
 
         crumb.className = "crumb-particle";
 
-        const rect = cookie.getBoundingClientRect();
+
+        let x;
+        let y;
 
 
-        crumb.style.left =
-            (rect.left + rect.width / 2) + "px";
+        // Mausklick
+        if (event && event.type === "click") {
 
-        crumb.style.top =
-            (rect.top + rect.height / 2) + "px";
+            x = event.clientX;
+            y = event.clientY;
+
+        }
+
+        // Leertaste
+        else {
+
+            const rect = cookie.getBoundingClientRect();
+
+            x = rect.left + rect.width / 2;
+            y = rect.top + rect.height / 2;
+
+        }
 
 
-        document.body.appendChild(crumb);
+        crumb.style.left = x + "px";
+        crumb.style.top = y + "px";
 
 
         const randomX = Math.random() * 80 - 40;
@@ -150,6 +165,9 @@ function createCrumbs() {
         );
 
 
+        document.body.appendChild(crumb);
+
+
         setTimeout(() => {
 
             crumb.remove();
@@ -159,7 +177,6 @@ function createCrumbs() {
     }
 
 }
-
 document.addEventListener("keydown", function(event) {
 
     if (event.code === "Space" && !event.repeat) {
