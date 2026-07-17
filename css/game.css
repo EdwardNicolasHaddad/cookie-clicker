@@ -196,3 +196,42 @@ body {
     }
 
 }
+
+.crumb-particle {
+
+    position: fixed;
+
+    width: 8px;
+    height: 8px;
+
+    background: #d8a15d;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    animation: crumbFly 0.6s forwards;
+
+}
+
+
+@keyframes crumbFly {
+
+    from {
+
+        transform: translate(0,0);
+        opacity: 1;
+
+    }
+
+
+    to {
+
+        transform:
+            translate(var(--x), var(--y));
+
+        opacity: 0;
+
+    }
+
+}
