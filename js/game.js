@@ -1,22 +1,27 @@
-let player = localStorage.getItem("player");
+const normalEntry =
+    sessionStorage.getItem("enteredGameNormally");
 
-if (!player) {
 
-    window.location.href = "index.html";
+let player = null;
+
+
+if (normalEntry === "true") {
+
+    player = localStorage.getItem("player");
 
 }
 
-let player = localStorage.getItem("player");
 
 let crumbs = 0;
+
 
 if (player) {
 
     let account = JSON.parse(player);
+
     crumbs = account.crumbs || 0;
 
 }
-
 
 const cookie = document.getElementById("cookie");
 const crumbDisplay =
