@@ -72,6 +72,11 @@ if (loginButton) {
 
             alert("Login successful!");
 
+            sessionStorage.setItem(
+                "enteredGameNormally",
+                "true"
+            );
+            
             window.location.href = "game.html";
 
         }
