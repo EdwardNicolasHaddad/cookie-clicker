@@ -40,6 +40,11 @@ function playGuest() {
 
     localStorage.removeItem("player");
 
+    sessionStorage.setItem(
+        "enteredGameNormally",
+        "false"
+    );
+
     window.location.href = "game.html";
 
 }
