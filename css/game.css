@@ -393,3 +393,13 @@ body {
     transform: scale(0.95);
 
 }
+
+.game-button img {
+
+    width: 45px;
+
+    height: 45px;
+
+    object-fit: contain;
+
+}
