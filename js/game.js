@@ -1,5 +1,13 @@
 let player = localStorage.getItem("player");
 
+if (!player) {
+
+    window.location.href = "index.html";
+
+}
+
+let player = localStorage.getItem("player");
+
 let crumbs = 0;
 
 if (player) {
