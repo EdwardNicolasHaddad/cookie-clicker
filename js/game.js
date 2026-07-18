@@ -11,8 +11,8 @@ if (player) {
 
 
 const cookie = document.getElementById("cookie");
-const crumbDisplay = document.querySelector("h2");
-
+const crumbDisplay =
+    document.getElementById("crumb-count");
 
 crumbDisplay.textContent = "Crumbs: " + crumbs;
 
