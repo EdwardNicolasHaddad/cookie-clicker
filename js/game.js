@@ -206,3 +206,14 @@ document.addEventListener("keydown", function(event) {
     }
 
 });
+function logout() {
+
+    localStorage.removeItem("player");
+
+    sessionStorage.removeItem(
+        "enteredGameNormally"
+    );
+
+    window.location.href = "index.html";
+
+}
