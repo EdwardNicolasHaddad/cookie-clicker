@@ -27,7 +27,7 @@ const cookie = document.getElementById("cookie");
 const crumbDisplay =
     document.getElementById("crumb-count");
 
-crumbDisplay.textContent = "Crumbs: " + crumbs;
+crumbDisplay.textContent = crumbs;
 
 async function cookieClick(event) {
 
@@ -43,8 +43,7 @@ async function cookieClick(event) {
 
     }
 
-    crumbDisplay.textContent = "Crumbs: " + crumbs;
-
+    crumbDisplay.textContent = crumbs;
     if (player) {
 
         let account = JSON.parse(player);
