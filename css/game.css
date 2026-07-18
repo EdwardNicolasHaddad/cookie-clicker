@@ -338,28 +338,21 @@ body {
 
     justify-content: center;
 
-    gap: 45px;
+    gap: 80px;
 
-    margin-top: 50px;
+    margin-top: 60px;
 
 }
 
 
 .game-button {
 
-    width: 90px;
+    width: 120px;
 
-    height: 90px;
+    height: 70px;
 
-    border-radius: 50%;
+    border-radius: 20px;
 
-    border: none;
-
-    background: linear-gradient(
-        135deg,
-        #d98b32,
-        #a85d12
-    );
 
     color: white;
 
