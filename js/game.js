@@ -216,16 +216,12 @@ function logout() {
     window.location.href = "index.html";
 
 }
-const achievementButton =
-    document.getElementById("achievement-button");
+const achievementButton = document.getElementById("achievement-button");
+const achievementPanel = document.getElementById("achievement-panel");
 
 
-const achievementPanel =
-    document.getElementById("achievement-panel");
-
-
-achievementButton.addEventListener("click", function() {
+achievementButton.onclick = function() {
 
     achievementPanel.classList.toggle("active");
 
-});
+};
