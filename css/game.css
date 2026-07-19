@@ -406,13 +406,13 @@ body {
 
 #world-button img {
 
-    transform: translateY(5px);
+    transform: translateY(3px);
 
 }
 
 
 #achievement-button img {
 
-    transform: translateY(-5px);
+    transform: translateY(-2px);
 
 }
