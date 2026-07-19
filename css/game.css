@@ -438,10 +438,20 @@ body {
     height: 100vh;
 
 
-    background: rgba(255,255,255,0.9);
+    background: linear-gradient(
+        135deg,
+        #ffe8b6,
+        #f5c982
+    );
+
 
     box-shadow:
-        5px 0 20px rgba(0,0,0,0.2);
+        5px 0 25px rgba(0,0,0,0.25);
+
+
+    border-top-right-radius: 35px;
+
+    border-bottom-right-radius: 35px;
 
 
     transform: translateX(-100%);
@@ -466,6 +476,12 @@ body {
 
 #achievement-panel h2 {
 
-    margin-top: 20px;
+    text-align: center;
+
+    margin-top: 10px;
+
+    color: #4b2e00;
+
+    font-size: 32px;
 
 }
