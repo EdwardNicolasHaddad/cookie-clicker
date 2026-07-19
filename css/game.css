@@ -403,3 +403,16 @@ body {
     object-fit: contain;
 
 }
+
+#world-button img {
+
+    transform: translateY(5px);
+
+}
+
+
+#achievement-button img {
+
+    transform: translateY(-5px);
+
+}
