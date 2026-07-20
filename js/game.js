@@ -13,6 +13,9 @@ if (normalEntry === "true") {
 
 
 let crumbs = 0;
+let totalCrumbs = 0;
+let totalClicks = 0;
+let totalWorlds = 1;
 
 
 if (player) {
@@ -20,6 +23,12 @@ if (player) {
     let account = JSON.parse(player);
 
     crumbs = account.crumbs || 0;
+
+    totalCrumbs = account.total_crumbs || 0;
+
+    totalClicks = account.total_clicks || 0;
+
+    totalWorlds = account.total_worlds || 1;
 
 }
 
@@ -32,6 +41,11 @@ crumbDisplay.textContent = crumbs;
 async function cookieClick(event) {
 
     crumbs++;
+    
+    totalCrumbs++;
+    
+    totalClicks++;
+    
     createCrumbs(event);
     if (event && event.type === "click") {
 
@@ -49,6 +63,12 @@ async function cookieClick(event) {
         let account = JSON.parse(player);
 
         account.crumbs = crumbs;
+        
+        account.totalCrumbs = totalCrumbs;
+        
+        account.totalClicks = totalClicks;
+        
+        account.totalWorlds = totalWorlds;
 
         localStorage.setItem(
             "player",
@@ -58,10 +78,12 @@ async function cookieClick(event) {
         await supabaseClient
             .from("profiles")
             .update({
-                crumbs: crumbs
+                crumbs: crumbs,
+                total_crumbs: totalCrumbs,
+                total_clicks: totalClicks,
+                total_worlds: totalWorlds
             })
             .eq("id", account.id);
-
     }
 
 }
