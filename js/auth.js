@@ -15,10 +15,14 @@ if (registerButton) {
             .from("profiles")
             .insert([
                 {
-                    username: username,
-                    password_hash: passwordHash,
-                    crumbs: 0,
-                    world: 1
+                    {
+                        username: username,
+                        password_hash: passwordHash,
+                        crumbs: 0,
+                        total_crumbs: 0,
+                        total_clicks: 0,
+                        total_worlds: 1
+                    }
                 }
             ])
             .select();
@@ -31,6 +35,11 @@ if (registerButton) {
         } else {
 
             localStorage.setItem("player", JSON.stringify(data[0]));
+
+            sessionStorage.setItem(
+                "enteredGameNormally",
+                "true"
+            );
 
             alert("Account created!");
 
