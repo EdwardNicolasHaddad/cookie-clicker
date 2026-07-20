@@ -13,9 +13,9 @@ if (normalEntry === "true") {
 
 
 let crumbs = 0;
-let total_Crumbs = 0;
-let total_Clicks = 0;
-let total_Worlds = 1;
+let total_crumbs = 0;
+let total_clicks = 0;
+let total_worlds = 1;
 
 
 if (player) {
@@ -24,27 +24,44 @@ if (player) {
 
     crumbs = account.crumbs || 0;
 
-    totalCrumbs = account.total_crumbs || 0;
+    total_crumbs = account.total_crumbs || 0;
 
-    totalClicks = account.total_clicks || 0;
+    total_clicks = account.total_clicks || 0;
 
-    totalWorlds = account.total_worlds || 1;
-
+    total_worlds = account.total_worlds || 1;
 }
 
 const cookie = document.getElementById("cookie");
+
 const crumbDisplay =
     document.getElementById("crumb-count");
 
+const totalCrumbsDisplay =
+    document.getElementById("total-crumbs");
+
+const totalClicksDisplay =
+    document.getElementById("total-clicks");
+
+const totalWorldsDisplay =
+    document.getElementById("total-worlds");
+
+
 crumbDisplay.textContent = crumbs;
+
+totalCrumbsDisplay.textContent = total_crumbs;
+
+totalClicksDisplay.textContent = total_clicks;
+
+totalWorldsDisplay.textContent = total_worlds;
+
 
 async function cookieClick(event) {
 
     crumbs++;
     
-    total_Crumbs++;
-    
-    total_Clicks++;
+    total_crumbs++;
+
+    total_clicks++;
     
     createCrumbs(event);
     if (event && event.type === "click") {
@@ -58,32 +75,39 @@ async function cookieClick(event) {
     }
 
     crumbDisplay.textContent = crumbs;
+    totalCrumbsDisplay.textContent = total_crumbs;
+    totalClicksDisplay.textContent = total_clicks;
+    totalWorldsDisplay.textContent = total_worlds;
+    
     if (player) {
 
         let account = JSON.parse(player);
 
         account.crumbs = crumbs;
-        
-        account.totalCrumbs = total_Crumbs;
-        
-        account.totalClicks = total_Clicks;
-        
-        account.totalWorlds = total_Worlds;
+
+        account.total_crumbs = total_crumbs;
+
+        account.total_clicks = total_clicks;
+
+        account.total_worlds = total_worlds;
+
 
         localStorage.setItem(
             "player",
             JSON.stringify(account)
         );
 
+
         await supabaseClient
             .from("profiles")
             .update({
                 crumbs: crumbs,
-                total_crumbs: total_Crumbs,
-                total_clicks: total_Clicks,
-                total_worlds: total_Worlds
+                total_crumbs: total_crumbs,
+                total_clicks: total_clicks,
+                total_worlds: total_worlds
             })
             .eq("id", account.id);
+
     }
 
 }
