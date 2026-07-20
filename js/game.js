@@ -45,6 +45,9 @@ const totalClicksDisplay =
 const totalWorldsDisplay =
     document.getElementById("total-worlds");
 
+const achievementList =
+    document.getElementById("achievement-list");
+
 
 crumbDisplay.textContent = crumbs;
 
@@ -53,6 +56,8 @@ totalCrumbsDisplay.textContent = total_crumbs;
 totalClicksDisplay.textContent = total_clicks;
 
 totalWorldsDisplay.textContent = total_worlds;
+
+loadAchievements();
 
 
 async function cookieClick(event) {
@@ -251,6 +256,24 @@ document.addEventListener("keydown", function(event) {
     }
 
 });
+
+function loadAchievements() {
+
+    if (!player) {
+
+        achievementList.innerHTML =
+        "Create an Account to view Achievements";
+
+        return;
+
+    }
+
+
+    achievementList.innerHTML =
+    "No achievements unlocked yet";
+
+}
+
 function logout() {
 
     localStorage.removeItem("player");
