@@ -14,16 +14,14 @@ if (registerButton) {
         const { data, error } = await supabaseClient
             .from("profiles")
             .insert([
-                {
-                    {
-                        username: username,
-                        password_hash: passwordHash,
-                        crumbs: 0,
-                        total_crumbs: 0,
-                        total_clicks: 0,
-                        total_worlds: 1
-                    }
-                }
+                 {
+                    username: username,
+                    password_hash: passwordHash,
+                    crumbs: 0,
+                    total_crumbs: 0,
+                    total_clicks: 0,
+                    total_worlds: 1
+                            
             ])
             .select();
 
