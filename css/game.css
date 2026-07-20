@@ -472,30 +472,35 @@ body {
 
     margin: 0;
 
-    text-align: center;
-
-    background: transparent;
+    background: none;
 
     box-shadow: none;
 
     border-radius: 0;
 
-    color: #4b2e00;
+    text-align: center;
 
-    font-size: 28px;
+    font-size: 24px;
 
     font-weight: bold;
+
+    color: #4b2e00;
 
 }
 
 .panel-header {
 
-    background: #e7b56a;
+    width: 180px;
 
-    margin: -30px -30px 20px -30px;
+    margin: 0 auto 25px auto;
 
-    padding: 20px;
+    padding: 12px;
 
-    border-bottom: 3px solid #c78b42;
+    background: #e6b46c;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,0.15);
 
 }
