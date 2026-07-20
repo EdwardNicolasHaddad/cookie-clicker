@@ -456,12 +456,18 @@ body {
 
 
     padding: 30px;
-
+    
+    padding-bottom: 80px;
 
     z-index: 10;
 
 }
 
+#achievement-list {
+
+    padding-bottom: 30px;
+
+}
 
 #achievement-panel::-webkit-scrollbar {
 
