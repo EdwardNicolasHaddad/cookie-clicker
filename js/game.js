@@ -83,6 +83,7 @@ async function cookieClick(event) {
     totalCrumbsDisplay.textContent = total_crumbs;
     totalClicksDisplay.textContent = total_clicks;
     totalWorldsDisplay.textContent = total_worlds;
+    loadAchievements();
     
     if (player) {
 
