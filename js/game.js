@@ -13,9 +13,9 @@ if (normalEntry === "true") {
 
 
 let crumbs = 0;
-let totalCrumbs = 0;
-let totalClicks = 0;
-let totalWorlds = 1;
+let total_Crumbs = 0;
+let total_Clicks = 0;
+let total_Worlds = 1;
 
 
 if (player) {
@@ -42,9 +42,9 @@ async function cookieClick(event) {
 
     crumbs++;
     
-    totalCrumbs++;
+    total_Crumbs++;
     
-    totalClicks++;
+    total_Clicks++;
     
     createCrumbs(event);
     if (event && event.type === "click") {
@@ -64,11 +64,11 @@ async function cookieClick(event) {
 
         account.crumbs = crumbs;
         
-        account.totalCrumbs = totalCrumbs;
+        account.totalCrumbs = total_Crumbs;
         
-        account.totalClicks = totalClicks;
+        account.totalClicks = total_Clicks;
         
-        account.totalWorlds = totalWorlds;
+        account.totalWorlds = total_Worlds;
 
         localStorage.setItem(
             "player",
@@ -79,9 +79,9 @@ async function cookieClick(event) {
             .from("profiles")
             .update({
                 crumbs: crumbs,
-                total_crumbs: totalCrumbs,
-                total_clicks: totalClicks,
-                total_worlds: totalWorlds
+                total_crumbs: total_Crumbs,
+                total_clicks: total_Clicks,
+                total_worlds: total_Worlds
             })
             .eq("id", account.id);
     }
