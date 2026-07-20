@@ -472,19 +472,21 @@ body {
 
     margin: 0;
 
+    padding: 0;
+
     background: none;
 
     box-shadow: none;
 
     border-radius: 0;
 
-    text-align: center;
-
-    font-size: 24px;
+    font-size: 22px;
 
     font-weight: bold;
 
     color: #4b2e00;
+
+    line-height: 1;
 
 }
 
@@ -492,13 +494,19 @@ body {
 
     width: 180px;
 
-    margin: 0 auto 25px auto;
+    height: 42px;
 
-    padding: 12px;
+    margin: 0 auto 25px auto;
 
     background: #e6b46c;
 
-    border-radius: 18px;
+    border-radius: 15px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
 
     box-shadow:
         0 4px 10px rgba(0,0,0,0.15);
