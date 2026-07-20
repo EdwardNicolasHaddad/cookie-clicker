@@ -448,12 +448,6 @@ body {
     box-shadow:
         5px 0 25px rgba(0,0,0,0.25);
 
-
-    border-top-right-radius: 35px;
-
-    border-bottom-right-radius: 35px;
-
-
     transform: translateX(-100%);
 
     transition: 0.35s;
@@ -476,12 +470,24 @@ body {
 
 #achievement-panel h2 {
 
+    margin: 0;
+
+    padding: 20px 0;
+
+    width: 100%;
+
     text-align: center;
 
-    margin-top: 10px;
+    background: transparent;
+
+    box-shadow: none;
+
+    border-radius: 0;
 
     color: #4b2e00;
 
-    font-size: 32px;
+    font-size: 30px;
+
+    font-weight: bold;
 
 }
