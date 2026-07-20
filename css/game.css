@@ -492,15 +492,15 @@ body {
 
 .panel-header {
 
-    width: 180px;
+    width: 210px;
 
-    height: 42px;
+    height: 52px;
 
-    margin: 0 auto 25px auto;
+    margin: 0 auto 30px auto;
 
     background: #e6b46c;
 
-    border-radius: 15px;
+    border-radius: 18px;
 
     display: flex;
 
