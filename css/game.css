@@ -466,29 +466,6 @@ body {
     transform: translateX(0);
 
 }
-
-
-#achievement-panel h2 {
-
-    margin: 0;
-
-    padding: 0;
-
-    background: none;
-
-    box-shadow: none;
-
-    border-radius: 0;
-
-    font-size: 28px;
-
-    font-weight: bold;
-
-    color: #4b2e00;
-
-    line-height: 1;
-
-}
 .panel-header {
 
     width: 210px;
@@ -509,5 +486,61 @@ body {
 
     box-shadow:
         0 4px 10px rgba(0,0,0,0.15);
+
+}
+
+
+.panel-header h2 {
+
+    margin: 0;
+
+    padding: 0;
+
+    background: none;
+
+    box-shadow: none;
+
+    border-radius: 0;
+
+    font-size: 28px;
+
+    color: #4b2e00;
+
+    line-height: 1;
+
+}
+
+.stats-box {
+
+    text-align: center;
+
+    color: #4b2e00;
+
+}
+
+
+.stats-box p {
+
+    margin: 18px 0 5px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+}
+
+
+.stats-box span {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+}
+
+
+.achievement-title {
+
+    margin-top: 35px;
 
 }
