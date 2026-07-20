@@ -259,18 +259,34 @@ document.addEventListener("keydown", function(event) {
 
 function loadAchievements() {
 
-    if (!player) {
+    achievementList.innerHTML = `
 
-        achievementList.innerHTML =
-        "Create an Account to view Achievements";
+        <div class="achievement-card locked">
 
-        return;
+            <h3>Cookie Beginner</h3>
 
-    }
+            <p>Reach 100 clicks</p>
+
+            <span class="achievement-progress">
+                12 / 100
+            </span>
+
+        </div>
 
 
-    achievementList.innerHTML =
-    "No achievements unlocked yet";
+        <div class="achievement-card locked">
+
+            <h3>Cookie Lover</h3>
+
+            <p>Reach 1000 clicks</p>
+
+            <span class="achievement-progress">
+                0 / 1000
+            </span>
+
+        </div>
+
+    `;
 
 }
 
