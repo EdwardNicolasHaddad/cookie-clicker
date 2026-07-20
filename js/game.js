@@ -258,7 +258,7 @@ document.addEventListener("keydown", function(event) {
 
 });
 
-function loadAchievements() {
+async function loadAchievements() {
 
     if (!player) {
 
@@ -275,36 +275,87 @@ function loadAchievements() {
 
     }
 
-    achievementList.innerHTML =
-    `
-    <div class="achievement-card locked">
 
-        <h3>Cookie Beginner</h3>
-
-        <p>Reach 100 clicks</p>
-
-        <span class="achievement-progress">
-            ${total_clicks} / 100
-        </span>
-
-    </div>
+    const { data, error } = await supabaseClient
+        .from("achievements")
+        .select("*");
 
 
-    <div class="achievement-card locked">
+    if (error) {
 
-        <h3>Cookie Lover</h3>
+        console.log(error);
 
-        <p>Reach 1000 clicks</p>
+        achievementList.innerHTML =
+        "Could not load achievements";
 
-        <span class="achievement-progress">
-            ${total_clicks} / 1000
-        </span>
+        return;
 
-    </div>
-    `;
+    }
+
+
+    achievementList.innerHTML = "";
+
+
+    data.forEach(function(achievement) {
+
+
+        let current = 0;
+
+
+        if (achievement.requirement_type === "clicks") {
+
+            current = total_clicks;
+
+        }
+
+
+        if (achievement.requirement_type === "crumbs") {
+
+            current = total_crumbs;
+
+        }
+
+
+        if (current > achievement.requirement_value) {
+
+            current = achievement.requirement_value;
+
+        }
+
+
+
+        achievementList.innerHTML +=
+        `
+
+        <div class="achievement-card locked">
+
+
+            <h3>
+                ${achievement.name}
+            </h3>
+
+
+            <p>
+                ${achievement.description}
+            </p>
+
+
+            <span class="achievement-progress">
+
+                ${current}/${achievement.requirement_value}
+
+            </span>
+
+
+        </div>
+
+        `;
+
+
+    });
+
 
 }
-
 function logout() {
 
     localStorage.removeItem("player");
