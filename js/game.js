@@ -389,6 +389,15 @@ async function loadAchievements() {
             </p>
 
 
+            <div class="achievement-bar">
+
+                <div class="achievement-fill" style="width:${(current / achievement.requirement_value) * 100}%">
+
+                </div>
+
+            </div>
+
+
             <span class="achievement-progress">
 
                 ${current}/${achievement.requirement_value}
