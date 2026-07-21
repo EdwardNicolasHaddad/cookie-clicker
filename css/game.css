@@ -668,3 +668,37 @@ body {
     padding-bottom: 30px;
 
 }
+
+#achievement-scroll::-webkit-scrollbar {
+
+    width: 8px;
+
+}
+
+#achievement-scroll::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+#achievement-scroll::-webkit-scrollbar-thumb {
+
+    background: linear-gradient(
+        135deg,
+        #d98b32,
+        #a85d12
+    );
+
+    border-radius: 20px;
+
+}
+
+#achievement-scroll::-webkit-scrollbar-thumb:hover {
+
+    background: linear-gradient(
+        135deg,
+        #e9a548,
+        #b86b1d
+    );
+
+}
