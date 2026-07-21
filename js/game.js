@@ -1,22 +1,11 @@
-const normalEntry =
-    sessionStorage.getItem("enteredGameNormally");
-
-
-let player = null;
-
-
-if (normalEntry === "true") {
-
-    player = localStorage.getItem("player");
-
-}
-
+let player = localStorage.getItem("player");
 
 let crumbs = 0;
 let total_crumbs = 0;
 let total_clicks = 0;
 let total_worlds = 1;
 let unlockedAchievements = [];
+let achievementQueue = [];
 let popupShowing = false;
 
 
@@ -50,15 +39,6 @@ const totalWorldsDisplay =
 const achievementList =
     document.getElementById("achievement-list");
 
-
-crumbDisplay.textContent = crumbs;
-
-totalCrumbsDisplay.textContent = total_crumbs;
-
-totalClicksDisplay.textContent = total_clicks;
-
-totalWorldsDisplay.textContent = total_worlds;
-
 init();
 
 
@@ -85,9 +65,7 @@ async function cookieClick(event) {
     totalCrumbsDisplay.textContent = total_crumbs;
     totalClicksDisplay.textContent = total_clicks;
     totalWorldsDisplay.textContent = total_worlds;
-    loadAchievements();
-    await checkAchievements();
-    
+
     if (player) {
 
         let account = JSON.parse(player);
@@ -118,6 +96,10 @@ async function cookieClick(event) {
             .eq("id", account.id);
 
     }
+
+    await checkAchievements();
+
+    loadAchievements();
 
 }
 
@@ -263,9 +245,61 @@ document.addEventListener("keydown", function(event) {
 
 async function init() {
 
+    await loadPlayerData();
+
     await loadUnlockedAchievements();
 
     await loadAchievements();
+
+}
+
+async function loadPlayerData() {
+
+    if (!player) return;
+
+
+    const account = JSON.parse(player);
+
+
+    const { data, error } = await supabaseClient
+        .from("profiles")
+        .select("*")
+        .eq("id", account.id)
+        .single();
+
+
+    if (error) {
+
+        console.log(error);
+        return;
+
+    }
+
+
+    player = JSON.stringify(data);
+
+    localStorage.setItem(
+        "player",
+        player
+    );
+
+
+    crumbs = data.crumbs || 0;
+
+    total_crumbs = data.total_crumbs || 0;
+
+    total_clicks = data.total_clicks || 0;
+
+    total_worlds = data.total_worlds || 1;
+
+
+    crumbDisplay.textContent = crumbs;
+
+    totalCrumbsDisplay.textContent = total_crumbs;
+
+    totalClicksDisplay.textContent = total_clicks;
+
+    totalWorldsDisplay.textContent = total_worlds;
 
 }
 
@@ -309,6 +343,8 @@ async function loadAchievements() {
 
     data.forEach(function(achievement) {
 
+        let unlocked =
+        unlockedAchievements.includes(achievement.id);
 
         let current = 0;
 
@@ -338,7 +374,7 @@ async function loadAchievements() {
         achievementList.innerHTML +=
         `
 
-        <div class="achievement-card locked">
+        <div class="achievement-card ${unlocked ? "unlocked" : "locked"}">
 
 
             <h3>
@@ -440,22 +476,26 @@ async function checkAchievements() {
 
         if (unlocked) {
 
-            await supabaseClient
+            const { error } = await supabaseClient
                 .from("player_achievements")
                 .insert({
                     player_id: account.id,
                     achievement_id: achievement.id
                 });
 
-            unlockedAchievements.push(
-                achievement.id
-            );
 
-            await loadUnlockedAchievements();
+            if (!error) {
 
-            showAchievementPopup(
-                achievement.name
-            );
+                unlockedAchievements.push(
+                    achievement.id
+                );
+
+
+                showAchievementPopup(
+                    achievement.name
+                );
+
+            }
 
         }
 
