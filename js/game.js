@@ -364,6 +364,12 @@ async function loadAchievements() {
 
         }
 
+        if (achievement.requirement_type === "worlds") {
+
+            current = total_worlds;
+
+        }
+
 
         if (current > achievement.requirement_value) {
 
@@ -444,9 +450,17 @@ async function checkAchievements() {
 
     const account = JSON.parse(player);
 
-    const { data } = await supabaseClient
+    const { data, error } = await supabaseClient
         .from("achievements")
         .select("*");
+
+
+    if(error){
+
+        console.log(error);
+        return;
+
+    }
 
     for (const achievement of data) {
 
