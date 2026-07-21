@@ -85,6 +85,7 @@ async function cookieClick(event) {
     totalClicksDisplay.textContent = total_clicks;
     totalWorldsDisplay.textContent = total_worlds;
     loadAchievements();
+    await checkAchievements();
     
     if (player) {
 
@@ -386,6 +387,77 @@ async function loadUnlockedAchievements() {
 
     unlockedAchievements =
         data.map(a => a.achievement_id);
+
+}
+
+async function checkAchievements() {
+
+    if (!player) return;
+
+    const account = JSON.parse(player);
+
+    const { data } = await supabaseClient
+        .from("achievements")
+        .select("*");
+
+    for (const achievement of data) {
+
+        if (
+            unlockedAchievements.includes(achievement.id)
+        ) {
+            continue;
+        }
+
+        let unlocked = false;
+
+        if (
+            achievement.requirement_type === "clicks" &&
+            total_clicks >= achievement.requirement_value
+        ) {
+
+            unlocked = true;
+
+        }
+
+        if (
+            achievement.requirement_type === "crumbs" &&
+            total_crumbs >= achievement.requirement_value
+        ) {
+
+            unlocked = true;
+
+        }
+
+        if (
+            achievement.requirement_type === "worlds" &&
+            total_worlds >= achievement.requirement_value
+        ) {
+
+            unlocked = true;
+
+        }
+
+        if (unlocked) {
+
+            await supabaseClient
+                .from("player_achievements")
+                .insert({
+                    player_id: account.id,
+                    achievement_id: achievement.id
+                });
+
+            unlockedAchievements.push(
+                achievement.id
+            );
+
+            alert(
+                "🏆 Achievement unlocked!\n" +
+                achievement.name
+            );
+
+        }
+
+    }
 
 }
 
