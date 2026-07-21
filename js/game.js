@@ -450,6 +450,8 @@ async function checkAchievements() {
                 achievement.id
             );
 
+            await loadUnlockedAchievements();
+
             alert(
                 "🏆 Achievement unlocked!\n" +
                 achievement.name
