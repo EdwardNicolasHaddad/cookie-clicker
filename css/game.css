@@ -764,3 +764,55 @@ body {
     color: #4b2e00;
 
 }
+
+.achievement-card {
+
+    background: rgba(255,255,255,0.35);
+
+    padding: 15px;
+
+    margin-bottom: 15px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.15);
+
+    transition: 0.3s;
+
+}
+
+
+.achievement-card:hover {
+
+    transform: scale(1.03);
+
+}
+
+
+/* gesperrt */
+
+.achievement-card.locked {
+
+    opacity: 0.5;
+
+}
+
+
+/* freigeschaltet */
+
+.achievement-card.unlocked {
+
+    opacity: 1;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffe08a,
+        #f5b642
+    );
+
+    box-shadow:
+    0 0 20px rgba(255,190,50,0.8);
+
+}
