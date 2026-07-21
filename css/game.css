@@ -704,7 +704,7 @@ body {
 
     pointer-events: none;
 
-    top: -150px;
+    top: -250px;
 
     left: 50%;
 
@@ -792,7 +792,7 @@ body {
     );
 
     box-shadow:
-    0 0 20px rgba(255,190,50,0.8);
+    0 0 20px rgba(255,190,50,0.7);
 
 }
 
