@@ -17,6 +17,7 @@ let total_crumbs = 0;
 let total_clicks = 0;
 let total_worlds = 1;
 let unlockedAchievements = [];
+let popupShowing = false;
 
 
 if (player) {
@@ -464,6 +465,33 @@ async function checkAchievements() {
 
 function showAchievementPopup(name) {
 
+    achievementQueue.push(name);
+
+    if (!popupShowing) {
+
+        showNextAchievementPopup();
+
+    }
+
+}
+
+
+function showNextAchievementPopup() {
+
+    if (achievementQueue.length === 0) {
+
+        popupShowing = false;
+        return;
+
+    }
+
+
+    popupShowing = true;
+
+
+    const name = achievementQueue.shift();
+
+
     const popup = document.getElementById(
         "achievement-popup"
     );
@@ -481,7 +509,16 @@ function showAchievementPopup(name) {
 
     setTimeout(() => {
 
+
         popup.classList.remove("show");
+
+
+        setTimeout(() => {
+
+            showNextAchievementPopup();
+
+        }, 500);
+
 
     }, 3000);
 
