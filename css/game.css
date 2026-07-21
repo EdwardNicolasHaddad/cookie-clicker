@@ -792,8 +792,7 @@ body {
     );
 
     box-shadow:
-    0 0 20px rgba(255,190,50,0.7);
-
+    0 0 12px 1px rgba(255,190,50,0.45);
 }
 
 .achievement-bar {
