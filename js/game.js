@@ -462,6 +462,31 @@ async function checkAchievements() {
 
 }
 
+function showAchievementPopup(name) {
+
+    const popup = document.getElementById(
+        "achievement-popup"
+    );
+
+    const popupName = document.getElementById(
+        "popup-name"
+    );
+
+
+    popupName.textContent = name;
+
+
+    popup.classList.add("show");
+
+
+    setTimeout(() => {
+
+        popup.classList.remove("show");
+
+    }, 3000);
+
+}
+
 function logout() {
 
     localStorage.removeItem("player");
