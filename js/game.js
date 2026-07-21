@@ -16,6 +16,7 @@ let crumbs = 0;
 let total_crumbs = 0;
 let total_clicks = 0;
 let total_worlds = 1;
+let unlockedAchievements = [];
 
 
 if (player) {
@@ -57,7 +58,7 @@ totalClicksDisplay.textContent = total_clicks;
 
 totalWorldsDisplay.textContent = total_worlds;
 
-loadAchievements();
+init();
 
 
 async function cookieClick(event) {
@@ -258,6 +259,14 @@ document.addEventListener("keydown", function(event) {
 
 });
 
+async function init() {
+
+    await loadUnlockedAchievements();
+
+    await loadAchievements();
+
+}
+
 async function loadAchievements() {
 
     if (!player) {
@@ -356,6 +365,30 @@ async function loadAchievements() {
 
 
 }
+
+async function loadUnlockedAchievements() {
+
+    if (!player) return;
+
+    const account = JSON.parse(player);
+
+    const { data, error } = await supabaseClient
+        .from("player_achievements")
+        .select("achievement_id")
+        .eq("player_id", account.id);
+
+    if (error) {
+
+        console.log(error);
+        return;
+
+    }
+
+    unlockedAchievements =
+        data.map(a => a.achievement_id);
+
+}
+
 function logout() {
 
     localStorage.removeItem("player");
