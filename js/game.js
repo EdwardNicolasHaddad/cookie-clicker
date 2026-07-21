@@ -249,6 +249,8 @@ async function init() {
 
     await loadUnlockedAchievements();
 
+    await checkAchievements();
+
     await loadAchievements();
 
 }
