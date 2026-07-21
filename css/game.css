@@ -702,3 +702,65 @@ body {
     );
 
 }
+
+#achievement-popup {
+
+    position: fixed;
+
+    top: -150px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        135deg,
+        #ffe8b6,
+        #f5c982
+    );
+
+    padding: 20px 50px;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.25);
+
+    text-align: center;
+
+    z-index: 100;
+
+    transition: 0.5s ease;
+
+}
+
+
+#achievement-popup.show {
+
+    top: 30px;
+
+}
+
+
+.popup-title {
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    color: #8b5a2b;
+
+}
+
+
+#popup-name {
+
+    margin-top: 8px;
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #4b2e00;
+
+}
