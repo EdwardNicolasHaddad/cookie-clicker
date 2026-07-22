@@ -4,6 +4,9 @@ let crumbs = 0;
 let total_crumbs = 0;
 let total_clicks = 0;
 let total_worlds = 1;
+
+let clickMultiplier = 1;
+
 let unlockedAchievements = [];
 let achievementQueue = [];
 let popupShowing = false;
@@ -20,6 +23,8 @@ if (player) {
     total_clicks = account.total_clicks || 0;
 
     total_worlds = account.total_worlds || 1;
+
+    clickMultiplier = account.clickMultiplier || 1;
 }
 
 const cookie = document.getElementById("cookie");
@@ -44,9 +49,9 @@ init();
 
 async function cookieClick(event) {
 
-    crumbs++;
-    
-    total_crumbs++;
+    crumbs += clickMultiplier;
+
+    total_crumbs += clickMultiplier;
 
     total_clicks++;
     
@@ -78,6 +83,8 @@ async function cookieClick(event) {
 
         account.total_worlds = total_worlds;
 
+        account.clickMultiplier = clickMultiplier;
+
 
         localStorage.setItem(
             "player",
@@ -91,7 +98,8 @@ async function cookieClick(event) {
                 crumbs: crumbs,
                 total_crumbs: total_crumbs,
                 total_clicks: total_clicks,
-                total_worlds: total_worlds
+                total_worlds: total_worlds,
+                clickMultiplier: clickMultiplier
             })
             .eq("id", account.id);
 
@@ -302,6 +310,8 @@ async function loadPlayerData() {
     totalClicksDisplay.textContent = total_clicks;
 
     totalWorldsDisplay.textContent = total_worlds;
+
+    clickMultiplier = data.clickMultiplier || 1;
 
 }
 
