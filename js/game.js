@@ -619,3 +619,14 @@ achievementButton.onclick = function() {
     achievementPanel.classList.toggle("active");
 
 };
+
+const shopButton = document.getElementById("shop-button");
+
+const shopPanel = document.getElementById("shop-panel");
+
+
+shopButton.onclick = function() {
+
+    shopPanel.classList.toggle("active");
+
+};
