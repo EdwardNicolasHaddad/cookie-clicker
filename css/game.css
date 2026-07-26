@@ -313,7 +313,7 @@ body {
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition: right 0.35s, transform 0.2s;
 
 }
 
@@ -885,5 +885,10 @@ body {
     overflow-y: auto;
 
     margin-top: 20px;
+
+}
+#logout-button.move {
+
+    right: 320px;
 
 }
