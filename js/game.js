@@ -621,12 +621,12 @@ achievementButton.onclick = function() {
 };
 
 const shopButton = document.getElementById("shop-button");
-
 const shopPanel = document.getElementById("shop-panel");
-
+const logoutButton = document.getElementById("logout-button");
 
 shopButton.onclick = function() {
 
     shopPanel.classList.toggle("active");
+    logoutButton.classList.toggle("move");
 
 };
