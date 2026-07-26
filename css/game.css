@@ -834,3 +834,56 @@ body {
     margin-bottom: 5px;
 
 }
+
+#shop-panel {
+
+    position: fixed;
+
+    right: 0;
+
+    top: 0;
+
+    width: 260px;
+
+    height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #ffe8b6,
+        #f5c982
+    );
+
+    box-shadow:
+        -5px 0 25px rgba(0,0,0,0.25);
+
+    transform: translateX(100%);
+
+    transition: 0.35s;
+
+    padding: 30px;
+
+    padding-bottom: 80px;
+
+    z-index: 10;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+#shop-panel.active {
+
+    transform: translateX(0);
+
+}
+
+#shop-items {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    margin-top: 20px;
+
+}
