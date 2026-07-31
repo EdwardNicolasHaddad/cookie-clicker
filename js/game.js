@@ -8,6 +8,7 @@ let total_worlds = 1;
 let clickMultiplier = 1;
 
 let unlockedAchievements = [];
+let purchasedShopItems = [];
 let achievementQueue = [];
 let popupShowing = false;
 
@@ -43,6 +44,9 @@ const totalWorldsDisplay =
 
 const achievementList =
     document.getElementById("achievement-list");
+
+const shopItems =
+    document.getElementById("shop-items");
 
 init();
 
@@ -257,9 +261,13 @@ async function init() {
 
     await loadUnlockedAchievements();
 
+    await loadPurchasedShopItems();
+
     await checkAchievements();
 
     await loadAchievements();
+
+    await loadShop();
 
 }
 
@@ -596,6 +604,62 @@ function showNextAchievementPopup() {
 
 
     }, 3000);
+
+}
+
+async function loadShop() {
+
+    if (!player) {
+
+        shopList.innerHTML = `
+            <div class="guest-achievement">
+                Create an Account to use the Shop
+            </div>
+        `;
+
+        return;
+
+    }
+
+    const { data, error } = await supabaseClient
+        .from("shop_items")
+        .select("*")
+        .order("id");
+
+    if (error) {
+
+        console.log(error);
+
+        shopList.innerHTML =
+            "Could not load shop";
+
+        return;
+
+    }
+
+    shopList.innerHTML = "";
+
+    data.forEach(function(item) {
+
+        shopList.innerHTML += `
+
+        <div class="achievement-card unlocked">
+
+            <h3>${item.name}</h3>
+
+            <p>${item.description}</p>
+
+            <span class="achievement-progress">
+
+                ${item.price} 🍪
+
+            </span>
+
+        </div>
+
+        `;
+
+    });
 
 }
 
