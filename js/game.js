@@ -641,10 +641,30 @@ async function loadShop() {
 
     data.forEach(function(item) {
 
+        let unlocked = false;
+
+        // Erstes Item ist immer freigeschaltet
+        if (item.id === 1) {
+
+            unlocked = true;
+
+        }
+
+        // Alle anderen erst, wenn das vorherige gekauft wurde
+        else if (
+            purchasedShopItems.includes(item.id - 1)
+        ) {
+
+            unlocked = true;
+
+        }
+
         shopList.innerHTML += `
 
-        <div class="achievement-card unlocked">
-
+        <div
+            class="achievement-card ${unlocked ? "unlocked" : "locked"}"
+            onclick="buyItem(${item.id})"
+        >
             <h3>${item.name}</h3>
 
             <p>${item.description}</p>
@@ -660,6 +680,29 @@ async function loadShop() {
         `;
 
     });
+
+}
+
+async function loadPurchasedShopItems() {
+
+    if (!player) return;
+
+    const account = JSON.parse(player);
+
+    const { data, error } = await supabaseClient
+        .from("player_shop_items")
+        .select("shop_item_id")
+        .eq("player_id", account.id);
+
+    if (error) {
+
+        console.log(error);
+        return;
+
+    }
+
+    purchasedShopItems =
+        data.map(item => item.shop_item_id);
 
 }
 
@@ -694,3 +737,29 @@ shopButton.onclick = function() {
     logoutButton.classList.toggle("move");
 
 };
+
+async function buyItem(itemId) {
+
+    // Erstes Item ist immer kaufbar
+    let unlocked = itemId === 1;
+
+    // Alle anderen nur,
+    // wenn das vorherige gekauft wurde
+    if (
+        itemId > 1 &&
+        purchasedShopItems.includes(itemId - 1)
+    ) {
+
+        unlocked = true;
+
+    }
+
+    if (!unlocked) {
+
+        return;
+
+    }
+
+    console.log("Buying Item:", itemId);
+
+}
