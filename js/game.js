@@ -6,9 +6,9 @@ let total_clicks = 0;
 let total_worlds = 1;
 
 let clickMultiplier = 1;
+let playerShopItems = [];
 
 let unlockedAchievements = [];
-let purchasedShopItems = [];
 let achievementQueue = [];
 let popupShowing = false;
 
@@ -45,7 +45,7 @@ const totalWorldsDisplay =
 const achievementList =
     document.getElementById("achievement-list");
 
-const shopItems =
+const shopList =
     document.getElementById("shop-items");
 
 init();
@@ -640,6 +640,8 @@ async function loadShop() {
     shopList.innerHTML = "";
 
     data.forEach(function(item) {
+        const level = getShopLevel(item.id);
+        const price = getShopPrice(item);
 
         let unlocked = false;
 
@@ -651,9 +653,7 @@ async function loadShop() {
         }
 
         // Alle anderen erst, wenn das vorherige gekauft wurde
-        else if (
-            purchasedShopItems.includes(item.id - 1)
-        ) {
+        else if (ownsPreviousItem(item.id)) {
 
             unlocked = true;
 
@@ -671,10 +671,8 @@ async function loadShop() {
 
             <span class="achievement-progress">
 
-                ${item.price} 🍪
-
+                Level ${level} • ${price} 🍪
             </span>
-
         </div>
 
         `;
@@ -691,7 +689,7 @@ async function loadPurchasedShopItems() {
 
     const { data, error } = await supabaseClient
         .from("player_shop_items")
-        .select("shop_item_id")
+        .select("shop_item_id, level")
         .eq("player_id", account.id);
 
     if (error) {
@@ -701,8 +699,45 @@ async function loadPurchasedShopItems() {
 
     }
 
-    purchasedShopItems =
-        data.map(item => item.shop_item_id);
+    playerShopItems = data;
+
+}
+
+function getShopLevel(itemId) {
+
+    const item = playerShopItems.find(
+        shopItem => shopItem.shop_item_id === itemId
+    );
+
+    if (!item) {
+
+        return 0;
+
+    }
+
+    return item.level;
+
+}
+
+function ownsPreviousItem(itemId) {
+
+    if (itemId === 1) {
+
+        return true;
+
+    }
+
+    return getShopLevel(itemId - 1) > 0;
+
+}
+
+function getShopPrice(item) {
+
+    const level = getShopLevel(item.id);
+
+    return Math.floor(
+        item.price * Math.pow(1.5, level)
+    );
 
 }
 
@@ -745,10 +780,7 @@ async function buyItem(itemId) {
 
     // Alle anderen nur,
     // wenn das vorherige gekauft wurde
-    if (
-        itemId > 1 &&
-        purchasedShopItems.includes(itemId - 1)
-    ) {
+    if (ownsPreviousItem(itemId)) {
 
         unlocked = true;
 
@@ -757,6 +789,88 @@ async function buyItem(itemId) {
     if (!unlocked) {
 
         return;
+
+    }
+
+    const { data: item, error } = await supabaseClient
+        .from("shop_items")
+        .select("*")
+        .eq("id", itemId)
+        .single();
+
+    if (error) {
+
+        console.log(error);
+        return;
+
+    
+    }
+
+    const price = getShopPrice(item);
+
+    if (crumbs < price) {
+
+        return;
+
+    }
+
+    crumbs -= price;
+
+    crumbDisplay.textContent = crumbs;
+
+    let level = getShopLevel(itemId) + 1;
+
+    const account = JSON.parse(player);
+
+    const existingItem = playerShopItems.find(
+        shopItem => shopItem.shop_item_id === itemId
+    );
+
+    if (existingItem) {
+
+        await supabaseClient
+            .from("player_shop_items")
+             .update({
+                 level: level
+            })
+            .eq("player_id", account.id)
+            .eq("shop_item_id", itemId);
+
+    }
+
+    else {
+
+        await supabaseClient
+            .from("player_shop_items")
+            .insert({
+                player_id: account.id,
+                shop_item_id: itemId,
+                level: 1
+            });
+
+    }
+
+    await supabaseClient
+        .from("profiles")
+        .update({
+            crumbs: crumbs
+        })
+        .eq("id", account.id);
+
+    account.crumbs = crumbs;
+
+    localStorage.setItem(
+        "player",
+        JSON.stringify(account)
+    );
+
+    await loadPurchasedShopItems();
+
+    await loadShop();
+
+    if (item.id === 1) {
+
+        clickMultiplier = Math.pow(2, level);
 
     }
 
